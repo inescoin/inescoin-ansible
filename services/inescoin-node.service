@@ -1,0 +1,18 @@
+[Unit]
+Description=InescoinNode
+StartLimitIntervalSec=30
+StartLimitBurst=3
+
+[Service]
+Type=simple
+User=root
+Group=root
+
+## Start service
+
+Restart=always
+WorkingDirectory=/opt/
+
+[Install]
+WantedBy=multi-user.target
+Alias=inescoin.service

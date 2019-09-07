@@ -1,0 +1,36 @@
+---
+#
+# Installing Kibana
+#
+
+# Install Kibana
+
+- name: Install Kibana with apt
+  raw: apt-get install kibana=7.3.0
+
+# Configurations
+
+- name: Updating the config file to allow outside access
+  lineinfile:
+   destfile: /etc/kibana/kibana.yml
+   regexp: 'server.host:'
+   line: 'server.host: 0.0.0.0'
+
+- name: Defining server port
+  lineinfile:
+   destfile: /etc/kibana/kibana.yml
+   regexp: 'server.port:'
+   line: 'server.port: 5601'
+
+# - name: Defining Elasticsearch URL
+#   lineinfile:
+#    destfile: /etc/kibana/kibana.yml
+#    regexp: '#elasticsearch.hosts: ["http://127.0.0.1:9200"]'
+#    line: 'elasticsearch.hosts: ["http://127.0.0.1:9200"]'
+
+# Starting Kibana
+
+- name: Starting Kibana
+  service:
+   name: kibana
+   state: started
