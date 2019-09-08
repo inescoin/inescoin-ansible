@@ -8,11 +8,9 @@
   become: yes
   become_user: root
   roles:
-  - { role: ssh }
   - { role: java }
   - { role: elasticsearch }
-  # - { role: ansible-elasticsearch }
-  - { role: kibana }
+  # - { role: kibana }
   - { role: php }
   - { role: blockchain-git }
   - role: ansible-role-nvm
