@@ -28,11 +28,4 @@
     regexp: ';include_path = ".:/php/includes"'
     line: 'include_path = ".:/php/includes:/opt/src:/opt/vendor"'
 
-- name: Update Elasticsearch App host
-  become: true
-  lineinfile:
-    dest: /opt/src/core/ES/ESService.php
-    regexp: "elasticsearch:9200"
-    line: "->setHosts(['localhost:9200'])"
-
 
