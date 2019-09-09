@@ -5,8 +5,8 @@
     src: node-service.j2
     dest: /etc/systemd/system/inescoin-node.service
     mode: 0644
-    owner: '{{ service.node.owner }}'
-    group: '{{ service.node.group }}'
+    # owner: '{{ service.node.owner }}'
+    # group: '{{ service.node.group }}'
 
 - name: Start inescoin-node.service
   systemd:

@@ -16,18 +16,17 @@
   - role: ansible-role-nvm
     nodejs_version: "10.16.0"
 
-  - group:
-      name: ines
-      state: present
-  - user:
-      name: ines
-      groups: ines
-
+  # - group:
+  #   name: ines
+  #   state: present
+  # - user:
+  #   name: ines
+  #   groups: ines
   - role: blockchain-node-service
     vars:
       p2p_ip: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
       rpc_ip: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
-      service:
-        node:
-          group: ines
-          user: ines
+      # service:
+      #   node:
+      #     group: ines
+      #     user: ines
