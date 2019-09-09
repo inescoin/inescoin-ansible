@@ -1,4 +1,9 @@
 ---
+- assert:
+    msg: "OS must be based on Debian"
+    that:
+      - ansible_os_family == 'Debian'
+
 - name: Add PHP 7 PPA repository
   become: true
   apt_repository:
