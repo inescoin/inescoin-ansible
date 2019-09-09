@@ -1,24 +1,15 @@
 ---
-- name: Install inescoin.service
-  copy:
-    src: ./services/inescoin-node.service
-    dest: /etc/systemd/system/inescoin-node.service
-    owner: root
-    group: root
-    mode: 0644
-
 - name: Update service with command node
   become: true
-  lineinfile:
+  template:
+    src: node-service.j2
     dest: /etc/systemd/system/inescoin-node.service
-    regexp: "## Start service"
-    line: "ExecStart=/opt/src/bin/inescoin-node --data-folder=../dataMel/blockchain/ --rpc-bind-port=8087 --p2p-bind-port=3031 --network=MAINNET --prefix=bob --rpc-bind-ip={{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }} --p2p-bind-ip={{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
+    mode: 0644
+    owner: '{{ service.node.owner }}'
+    group: '{{ service.node.group }}'
 
 - name: Start inescoin-node.service
   systemd:
     name: inescoin-node.service
     state: restarted
-
-- name: Reload systemctl daemon-reload
-  raw: systemctl daemon-reload
-
+    daemon_reload: yes

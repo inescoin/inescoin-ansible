@@ -1,0 +1,12 @@
+service:
+  node:
+    group: root
+    user: root
+data_path: ../dataMel/blockchain/
+network:
+  name: MAINNET
+prefix: bob
+p2p_ip: 127.0.0.1
+p2p_port: 3031
+rpc_ip: 127.0.0.1
+rpc_port: 8087
