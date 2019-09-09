@@ -4,119 +4,48 @@
   apt_repository:
     repo: 'ppa:ondrej/php'
 
-# - name: Update apt-get
-#   become: true
-#   raw: apt-get update
+- apt:
+    update_cache: yes
 
-- name: Install PHP CLI
+- name: Install dependencies
   become: true
   apt:
-    name: php7.3-cli
+    name: "{{ packages }}"
+    install_recommends: no
+  vars:
+    packages:
+      - php7.3-cli
+      - php7.3-json
+      - php7.3-curl
+      - php7.3-fpm
+      - php7.3-gd
+      - php7.3-gmp
+      - php7.3-ldap
+      - php7.3-mbstring
+      - php7.3-mysql
+      - php7.3-soap
+      - php7.3-sqlite3
+      - php7.3-xml
+      - php7.3-zip
+      - php7.3-intl
+      - php-imagick
+      - php-pear
+      - php7.3-dev
+      - openssl
+      - nano
+      - graphicsmagick
+      - imagemagick
+      - ghostscript
+      - mysql-client
+      - iputils-ping
+      - locales
+      - ca-certificates
+      - libxml2-dev
 
-- name: Install php7.3-json
-  raw: apt-get install -yq --no-install-recommends php7.3-json
+- apt:
+    autoclean: yes
   become: true
 
-- name: Install php7.3-curl
-  raw: apt-get install -yq --no-install-recommends php7.3-curl
-  become: true
-
-- name: Install php7.3-fpm
-  raw: apt-get install -yq --no-install-recommends php7.3-fpm
-  become: true
-
-- name: Install php7.3-gd
-  raw: apt-get install -yq --no-install-recommends php7.3-gd
-  become: true
-
-- name: Install php7.3-gmp
-  raw: apt-get install -yq --no-install-recommends php7.3-gmp
-  become: true
-
-- name: Install php7.3-ldap
-  raw: apt-get install -yq --no-install-recommends php7.3-ldap
-  become: true
-
-- name: Install php7.3-mbstring
-  raw: apt-get install -yq --no-install-recommends php7.3-mbstring
-  become: true
-
-- name: Install php7.3-mysql
-  raw: apt-get install -yq --no-install-recommends php7.3-mysql
-  become: true
-
-- name: Install php7.3-soap
-  raw: apt-get install -yq --no-install-recommends php7.3-soap
-  become: true
-
-- name: Install php7.3-sqlite3
-  raw: apt-get install -yq --no-install-recommends php7.3-sqlite3
-  become: true
-
-- name: Install php7.3-xml
-  raw: apt-get install -yq --no-install-recommends php7.3-xml
-  become: true
-
-- name: Install php7.3-zip
-  raw: apt-get install -yq --no-install-recommends php7.3-zip
-  become: true
-
-- name: Install php7.3-intl
-  raw: apt-get install -yq --no-install-recommends php7.3-intl
-  become: true
-
-- name: Install php-imagick
-  raw: apt-get install -yq --no-install-recommends php-imagick
-  become: true
-
-- name: Install php-pear
-  raw: apt-get install -yq --no-install-recommends php-pear
-  become: true
-
-- name: Install php7.3-dev
-  raw: apt-get install -yq --no-install-recommends php7.3-dev
-  become: true
-
-- name: Install openssl
-  raw: apt-get install -yq --no-install-recommends openssl
-  become: true
-
-- name: Install nano
-  raw: apt-get install -yq --no-install-recommends nano
-  become: true
-
-- name: Install graphicsmagick
-  raw: apt-get install -yq --no-install-recommends graphicsmagick
-  become: true
-
-- name: Install imagemagick
-  raw: apt-get install -yq --no-install-recommends imagemagick
-  become: true
-
-- name: Install ghostscript
-  raw: apt-get install -yq --no-install-recommends ghostscript
-  become: true
-
-- name: Install mysql-client
-  raw: apt-get install -yq --no-install-recommends mysql-client
-  become: true
-
-- name: Install iputils-ping
-  raw: apt-get install -yq --no-install-recommends iputils-ping
-  become: true
-
-- name: Install locales
-  raw: apt-get install -yq --no-install-recommends locales
-  become: true
-
-- name: Install ca-certificates
-  raw: apt-get install -yq --no-install-recommends ca-certificates
-  become: true
-
-- name: Install libxml2-dev
-  raw: apt-get install -yq --no-install-recommends libxml2-dev
-  become: true
-
-- name: Clean
-  raw: apt-get clean && rm -rf /var/lib/apt/lists/*
+- apt:
+    autoremove: yes
   become: true
