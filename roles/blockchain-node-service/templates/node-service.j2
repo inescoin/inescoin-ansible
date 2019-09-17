@@ -5,8 +5,6 @@ StartLimitBurst=3
 
 [Service]
 Type=simple
-User={{ service.node.user }}
-Group={{ service.node.group }}
 
 ExecStart=/opt/src/bin/inescoin-node --data-folder={{ data_path }} --rpc-bind-port={{ rpc_port }} --p2p-bind-port={{ p2p_port }} --network={{ network.name }} --prefix={{ prefix }} --rpc-bind-ip={{ rpc_ip }} --p2p-bind-ip={{ p2p_ip }}
 

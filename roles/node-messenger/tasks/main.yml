@@ -1,0 +1,3 @@
+---
+- name: Install dependencies
+  shell: bash -ic "cd /opt/messenger && /root/.nvm/versions/node/v10.16.0/bin/npm install"

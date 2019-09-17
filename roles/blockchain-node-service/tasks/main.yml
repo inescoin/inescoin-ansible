@@ -5,6 +5,13 @@
     src: node-service.j2
     dest: /etc/systemd/system/inescoin-node.service
     mode: 0644
+
+- name: Update service with command node messenger
+  become: true
+  template:
+    src: messenger-service.j2
+    dest: /etc/systemd/system/inescoin-messenger.service
+    mode: 0644
     # owner: '{{ service.node.owner }}'
     # group: '{{ service.node.group }}'
 
@@ -13,3 +20,10 @@
     name: inescoin-node.service
     state: restarted
     daemon_reload: yes
+
+- name: Start inescoin-messenger.service
+  systemd:
+    name: inescoin-messenger.service
+    state: restarted
+    daemon_reload: yes
+

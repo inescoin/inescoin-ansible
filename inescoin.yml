@@ -12,9 +12,10 @@
   - { role: elasticsearch }
   # - { role: kibana }
   - { role: php }
-  - { role: blockchain-git }
   - role: ansible-role-nvm
     nodejs_version: "10.16.0"
+  - { role: blockchain-git }
+  - { role: node-messenger }
 
   # - group:
   #   name: ines
