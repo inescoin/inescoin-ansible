@@ -1,0 +1,16 @@
+[Unit]
+Description=InescoinWebConsumer
+StartLimitIntervalSec=30
+StartLimitBurst=3
+
+[Service]
+Type=simple
+
+ExecStart=/opt/src/bin/inescoin-consumer --prefix={{ prefix }}
+
+Restart=always
+WorkingDirectory=/opt/
+
+[Install]
+WantedBy=multi-user.target
+Alias=inescoin-web-consumer.service
