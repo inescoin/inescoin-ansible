@@ -6,18 +6,31 @@
     dest: /etc/systemd/system/inescoin-node.service
     mode: 0644
 
+- name: Update service with command sync node
+  become: true
+  template:
+    src: sync-node-service.j2
+    dest: /etc/systemd/system/inescoin-sync-node.service
+
 - name: Update service with command node messenger
   become: true
   template:
     src: messenger-service.j2
     dest: /etc/systemd/system/inescoin-messenger.service
     mode: 0644
+
 - name: Update service with command node messenger
   become: true
   template:
     src: web-consumer-service.j2
     dest: /etc/systemd/system/inescoin-web-consumer.service
     mode: 0644
+
+- name: Start inescoin-sync-node.service
+  systemd:
+    name: inescoin-sync-node.service
+    state: restarted
+    daemon_reload: yes
 
 - name: Start inescoin-node.service
   systemd:
